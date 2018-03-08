@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const logic = require('./logic');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/search/:searchTerm/', (req, res)  => {
-
+app.get('/search/:category', (req, res)  => {
+    logic.getProductByCategory(req.params.category, (err, products) => {
+        res.json(products);
+    })
 });
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
