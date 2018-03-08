@@ -10,4 +10,10 @@ app.get('/search/:category', (req, res)  => {
     })
 });
 
+app.post('/select/:productId', (req, res) => {
+    logic.selectProduct(req.params.productId, (req, res) => {
+
+    })
+});
+
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
