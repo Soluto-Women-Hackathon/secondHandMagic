@@ -1,4 +1,5 @@
 module.exports = [{
+    "id": 1,
     "name": "toy car",
     "user" : {
         "user_name": "bob",
@@ -7,9 +8,11 @@ module.exports = [{
     "age": "12M",
     "gender": null,
     "image_path":"./img001.jpg",
-    "category": "toys"
+    "category": "toys",
+    "available": true,
 },
-    {
+    {   
+        "id": 2,
         "name": "red dress",
         "user" : {
             "user_name": "bob",
@@ -18,5 +21,6 @@ module.exports = [{
         "age": "12M",
         "gender": "girl",
         "image_path":"./img001.jpg",
-        "category": "cloths"
+        "category": "cloths",
+        "available": true,
     }];

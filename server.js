@@ -11,8 +11,8 @@ app.get('/search/:category', (req, res)  => {
 });
 
 app.post('/select/:productId', (req, res) => {
-    logic.selectProduct(req.params.productId, (req, res) => {
-
+    logic.selectProduct(req.params.productId, (req, success) => {
+        res.send(success);
     })
 });
 
