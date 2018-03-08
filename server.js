@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const logic = require('./logic');
+app.use(express.static("public"));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => {res.sendFile('/home/Lena/workspace/secondHandMagic/scripts/index.html')});
 
 app.get('/search/:category', (req, res)  => {
     logic.getProductByCategory(req.params.category, (err, products) => {

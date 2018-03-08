@@ -1,17 +1,27 @@
 module.exports = [{
     "id": 1,
-    "name": "toy car",
+    "name": "fish",
     "user" : {
         "user_name": "bob",
         "uesr_email": "bob@gmail.com"
     },
     "age": "12M",
     "gender": null,
-    "image_path":"./img001.jpg",
+    "image_path":"fish.jpeg",
+    "category": "toys"
+}, {
+    "name": "teddy bear",
+    "user" : {
+        "user_name": "bob",
+        "uesr_email": "bob@gmail.com"
+    },
+    "age": "12M",
+    "gender": null,
+    "image_path":"teddy.jpg",
     "category": "toys",
     "available": true,
 },
-    {   
+    {
         "id": 2,
         "name": "red dress",
         "user" : {
