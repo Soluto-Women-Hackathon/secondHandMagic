@@ -19,20 +19,11 @@
           myWindow.document.write(html_data);
         });
 
-        
-        // window.fetch(url)
-        //   .then(function(response) {
-        //     return response.json();
-        //   })
-        //   .then(function(myJson) {
-
-        //   })
-
       }
 
       function getCategories() {
           let category = document.getElementById('category').value;
-          let url = 'http://localhost:3000/search/' + category;
+          let url = 'http://localhost:3000/search/category/' + category;
           console.log(url);
 
           window.fetch(url)
@@ -42,7 +33,7 @@
             .then(function(myJson) {
                let myList = new Array();
                 myJson.forEach(product => {
-                    myList +='<div class="slide">' + '<input onclick="getProduct(' + product.id + ')" type="image" src="' +product.image_path + '" width=200 height=200/></div>';
+                    myList +='<div class="slide">' + '<input onclick="getProduct(' + product.id + ')" type="image" border="5" src="' +product.image_path + '" width=200 height=200/></div>';
                 });
                 
                 document.getElementById("results").innerHTML = myList;
@@ -53,6 +44,7 @@
 <body>
 <div class="container" style="width:30%">
     <div class="search">
+        <p>Catagory Search: </p>
         <input id="category" type="text" class="searchTerm" placeholder="What type of give away you looking for?">
         <button type="submit" class="searchButton" onclick="getCategories()" >
             <i class="fa fa-search"></i>
