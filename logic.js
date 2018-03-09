@@ -20,6 +20,14 @@ module.exports = {
         selectProduct.available = false;
         done(null, "Success");
     },
+    getProductByAge: function (age, done) {
+        const resultProducts = products.filter((p) => p.age === age && p.available === true);
+        done(null, resultProducts)
+    },
+    getProductByGender: function (gender, done) {
+        const resultProducts = products.filter((p) => p.gender === gender && p.available === true);
+        done(null, resultProducts)
+    },
 
     addProduct: function (category, age, gender, done) {
         console.log("looking for product id " + productId);
