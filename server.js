@@ -7,11 +7,15 @@ app.use(express.static("public"));
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/', (req, res) => {res.sendFile('/home/Lena/workspace/secondHandMagic/scripts/index.html')});
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+//     console.log("here");    
+// });
+
+app.get('/', (req, res) => {res.sendFile('./public/search.html')});
 
 
-app.get('/search/:category', (req, res)  => {
+app.get('/search/:category', (req, res)  => {   
     logic.getProductByCategory(req.params.category, (err, products) => {
         res.json(products);
     })
