@@ -2,11 +2,25 @@ var products = require('./products');
 var users = require('./users')
 
 module.exports = {
-    getProductByCategory: function (category, done) {
+    getProduct: function (type, value, done) {
+        if (type === "category") {
+            const resultProducts = products.filter((p) => p.category === value && p.available === true);
+            done(null, resultProducts);
+        } else if (type === "age") {
+            const resultProducts = products.filter((p) => p.age === value && p.available === true);
+            done(null, resultProducts);
+        } else if (type === "gender") {
+            const resultProducts = products.filter((p) => p.gender === value && p.available === true);
+            done(null, resultProducts);
+        } else {
+            done(null, null);
+        }
+    },
+    /*getProductByCategory: function (category, done) {
         console.log("here!");
         const resultProducts = products.filter((p) => p.category === category && p.available === true);
         done(null, resultProducts);
-    },
+    },*/
     selectProduct: function (productId, userId, done) {
         console.log("looking for product id " + productId + " for user " + userId);
         var selectProduct = products.find(function( p ) { 
@@ -22,14 +36,14 @@ module.exports = {
         }
         
     },
-    getProductByAge: function (age, done) {
-        const resultProducts = products.filter((p) => p.age === age && p.available === true);
-        done(null, resultProducts)
+    /*getProductByAge: function (age, done) {
+        const resultProducts = products.filter((p) => p.age === category && p.available === true);
+        done(null, resultProducts);
     },
     getProductByGender: function (gender, done) {
         const resultProducts = products.filter((p) => p.gender === gender && p.available === true);
         done(null, resultProducts)
-    },
+    },*/
 
     addProduct: function (newProductId, name, category, age, gender, img_path, done) {
         console.log("Adding new product " + name);

@@ -6,28 +6,41 @@ var productsCount = 2;
 app.use(express.static("public"));
 
 app.use(bodyParser.json());
-
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/', (req, res) => {res.sendFile('/home/Lena/workspace/secondHandMagic/scripts/index.html')});
 
 
-app.get('/search/:category', (req, res)  => {
+/*app.get('/search/:category', (req, res)  => {
     logic.getProductByCategory(req.params.category, (err, products) => {
-        res.json(products);
+    res.json(products);
+})
+});*/
+
+app.get('/search/:type/:value', (req, res)  => {
+    logic.getProduct(req.params.type, req.params.value, (err, products) => {
+    res.json(products);
+})
+});
+/*app.get('/search/:type/:value', (req, res)  => {
+    logic.getProduct(req.params.type, req.params.value, (err, products)) => {
+    res.json(products);
     })
-});
-
-app.get('/search/:gender', (req, res)  => {
-    logic.getProductByGender(req.params.gender, (err, products) => {
-    res.json(products);
+    /*console.log("hi");
+    if (req.params.type === "category") {
+    logic.getProductByCategory(req.params.value, err, products) => {
+        res.json(products);
 })
-});
-
-app.get('/search/:age', (req, res)  => {
-    logic.getProductByAge(req.params.age, (err, products) => {
-    res.json(products);
+} else if (req.params.type === "age") {
+    logic.getProductByAge(req.params.value, err, products) => {
+        res.json(products);
 })
-});
+}else if (req.params.type === "gender") {
+    logic.getProductByGender(req.params.value, err, products) => {
+        res.json(products);
+})
+}*/
+/*});*/
+
 
 app.post('/select/:productId', (req, res) => {
     console.log(req.body);
