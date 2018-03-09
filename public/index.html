@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
       function getProduct(productId) {
-        let url = "http://localhost:3000/view/" + productId;
+        var url = "http://localhost:3000/view/" + productId;
         var myWindow = window.open("", "MsgWindow", "width=500px,height=500px");
         window.fetch(url)
         .then(function(response) {
@@ -11,19 +11,18 @@
         })
         .then(function(myJson) {
           console.log(myJson);
-          let html_data = '<div class="item">\
+          var html_data = '<div class="item">\
                          <img src="' + myJson.image_path + '" width=200 height=200/>\
-                         <p>Name: ' + myJson.name + '<br>Ages: ' + myJson.age + '<br></p>\
-                        </div>'
+                         <p>Name: ' + myJson.name + '<br>Ages: ' + myJson.age + '<br></p></div>';
 
           myWindow.document.write(html_data);
         });
 
       }
 
-      function getCategories() {
-          let category = document.getElementById('category').value;
-          let url = 'http://localhost:3000/search/category/' + category;
+      function getCategories(type) {
+          var value = document.getElementById(type).value;
+          var url = 'http://localhost:3000/search/' + type + '/' + value;
           console.log(url);
 
           window.fetch(url)
@@ -44,11 +43,27 @@
 <body>
 <div class="container" style="width:30%">
     <div class="search">
-        <p>Catagory Search: </p>
-        <input id="category" type="text" class="searchTerm" placeholder="What type of give away you looking for?">
-        <button type="submit" class="searchButton" onclick="getCategories()" >
-            <i class="fa fa-search"></i>
-        </button>
+        <p style="padding-bottom: 20px">
+            Catagory Search:
+            <input id="category" type="text" class="searchTerm" placeholder="What type of give away you looking for?">
+            <button type="submit" class="searchButton" onclick="getCategories('category')" >
+                <i class="fa fa-search"></i>
+            </button>
+        </p>
+        <p style="padding-bottom: 20px">
+            Age Search:
+            <input id="age" type="text" class="searchTerm" placeholder="What type of give away you looking for?">
+            <button type="submit" class="searchButton" onclick="getCategories('age')" >
+                <i class="fa fa-search"></i>
+            </button>
+        </p>
+        <p style="padding-bottom: 20px">
+            Gender Search:
+            <input id="gender" type="text" class="searchTerm" placeholder="What type of give away you looking for?">
+            <button type="submit" class="searchButton" onclick="getCategories('gender')" >
+                <i class="fa fa-search"></i>
+            </button>
+        </p>
     </div>
     <div class="wrapper">
         <div id="carousel">

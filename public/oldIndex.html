@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="search">
+        <input id="category" type="text" class="searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton" onclick="getCategories()" >
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</div>
+<p id="results"></p>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myList").innerHTML;
+        document.getElementById("results").innerHTML = x;
+    }
+</script>
+
+</body>
+</html>
+
+
+
+<script>
+    function getCategories() {
+        let category = document.getElementById('category').value;
+        let url = 'http://localhost:3000/search/' + category;
+        console.log(url);
+
+        window.fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+               let myList = '<ul>';
+                myJson.forEach(product => {
+                    myList+='<li>'+ product.name +'<img src="' +product.image_path + '" width=200 height=200/></li>';
+                });
+                myList+= '</ul>';
+                document.getElementById("results").innerHTML = myList;
+            });
+    }
+</script>
+</body>
+</html>
+
+
