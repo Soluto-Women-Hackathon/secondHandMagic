@@ -1,6 +1,6 @@
 module.exports = [{
     "id": 1,
-    "name": "fish",
+    "name": "toy car",
     "user" : {
         "user_name": "bob",
         "uesr_email": "bob@gmail.com"
@@ -8,16 +8,6 @@ module.exports = [{
     "age": "12M",
     "gender": null,
     "image_path":"fish.jpeg",
-    "category": "toys"
-}, {
-    "name": "teddy bear",
-    "user" : {
-        "user_name": "bob",
-        "uesr_email": "bob@gmail.com"
-    },
-    "age": "12M",
-    "gender": null,
-    "image_path":"teddy.jpg",
     "category": "toys",
     "available": true,
 },
