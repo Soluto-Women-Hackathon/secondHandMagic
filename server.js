@@ -70,4 +70,15 @@ app.post('/add', (req, res) => {
     })
 });
 
+app.post('/approve', (req, res) => {
+    /*productsCount+=1;*/
+console.log(req.body);
+logic.approve(req.body.product_id,
+    req.body.owner_id, req.body.reciever_id,
+    (req, success) => {
+    res.send(success);
+})
+});
+
+
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
