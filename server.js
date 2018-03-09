@@ -52,6 +52,14 @@ app.post('/select/:productId', (req, res) => {
     })
 });
 
+app.get('/view/:productId', (req, res) => {
+    console.log(req.body);
+    logic.viewProduct(req.params.productId, (req, product) => {
+        res.send(product);
+    })
+});
+
+
 app.post('/add', (req, res) => {
     productsCount+=1;
     console.log(req.body);

@@ -2,6 +2,34 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
+      function getProduct(productId) {
+        let url = "http://localhost:3000/view/" + productId;
+        var myWindow = window.open("", "MsgWindow", "width=500px,height=500px");
+        window.fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+          console.log(myJson);
+          let html_data = '<div class="item">\
+                         <img src="' + myJson.image_path + '" width=200 height=200/>\
+                         <p>Name: ' + myJson.name + '<br>Ages: ' + myJson.age + '<br></p>\
+                        </div>'
+
+          myWindow.document.write(html_data);
+        });
+
+        
+        // window.fetch(url)
+        //   .then(function(response) {
+        //     return response.json();
+        //   })
+        //   .then(function(myJson) {
+
+        //   })
+
+      }
+
       function getCategories() {
           let category = document.getElementById('category').value;
           let url = 'http://localhost:3000/search/' + category;
@@ -14,9 +42,9 @@
             .then(function(myJson) {
                let myList = new Array();
                 myJson.forEach(product => {
-                    myList +='<li>'+ product.name +'<img src="' +product.image_path + '" width=200 height=200/></li>';
+                    myList +='<div class="slide">' + '<input onclick="getProduct(' + product.id + ')" type="image" src="' +product.image_path + '" width=200 height=200/></div>';
                 });
-                myList+= '</ul>';
+                
                 document.getElementById("results").innerHTML = myList;
             });
       }
@@ -31,7 +59,7 @@
         </button>
     </div>
     <div class="wrapper">
-        <div class="thumbnai">
+        <div id="carousel">
             <p id="results"></p>
         </div>
     </div>

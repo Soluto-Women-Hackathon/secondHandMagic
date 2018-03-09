@@ -36,14 +36,19 @@ module.exports = {
         }
         
     },
-    /*getProductByAge: function (age, done) {
-        const resultProducts = products.filter((p) => p.age === category && p.available === true);
-        done(null, resultProducts);
+
+    viewProduct: function(productId, done) {
+        console.log("Showing you product id " + productId);
+        var selectProduct = products.find(function( p ) {
+            return (p.id === parseInt(productId) && p.available == true);
+        } );
+
+        if (selectProduct == null) {
+            done(null, []);
+        } else {
+            done(null, selectProduct);
+        }
     },
-    getProductByGender: function (gender, done) {
-        const resultProducts = products.filter((p) => p.gender === gender && p.available === true);
-        done(null, resultProducts)
-    },*/
 
     addProduct: function (newProductId, name, category, age, gender, img_path, done) {
         console.log("Adding new product " + name);
