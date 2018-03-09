@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        function post(path, params, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function addProduct() {
+            var name = document.getElementById("name").value;
+            var category = document.getElementById("category").value;
+            var age = document.getElementById("age").value;
+            var gender = document.getElementById("gender").value;
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "http://localhost:3000/add/");
+
+            var hiddenField1 = document.createElement("input");
+            hiddenField1.setAttribute("type", "hidden");
+            hiddenField1.setAttribute("name", "name");
+            hiddenField1.setAttribute("value", name);
+            form.appendChild(hiddenField1);
+
+            var hiddenField2 = document.createElement("input");
+            hiddenField2.setAttribute("type", "hidden");
+            hiddenField2.setAttribute("name", "category");
+            hiddenField2.setAttribute("value", category);
+            form.appendChild(hiddenField2);
+
+            var hiddenField3 = document.createElement("input");
+            hiddenField3.setAttribute("type", "hidden");
+            hiddenField3.setAttribute("name", "age");
+            hiddenField3.setAttribute("value", age);
+            form.appendChild(hiddenField3);
+
+            var hiddenField4 = document.createElement("input");
+            hiddenField4.setAttribute("type", "hidden");
+            hiddenField4.setAttribute("name", "gender");
+            hiddenField4.setAttribute("value", gender);
+            form.appendChild(hiddenField4);
+
+            var hiddenField5 = document.createElement("input");
+            hiddenField5.setAttribute("type", "hidden");
+            hiddenField5.setAttribute("name", "img_path");
+            hiddenField5.setAttribute("value", "");
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function getProduct(productId) {
+            var url = "http://localhost:3000/view/" + productId;
+            var myWindow = window.open("", "MsgWindow", "width=500px,height=500px");
+            window.fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(myJson) {
+                    console.log(myJson);
+                    var html_data = '<div class="item">\
+                         <img src="' + myJson.image_path + '" width=200 height=200/>\
+                         <p>Name: ' + myJson.name + '<br>Ages: ' + myJson.age + '<br></p></div>';
+
+                    myWindow.document.write(html_data);
+                });
+
+        }
+
+        function getCategories(type) {
+            var value = document.getElementById(type).value;
+            var url = 'http://localhost:3000/search/' + type + '/' + value;
+            console.log(url);
+
+            window.fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(myJson) {
+                    let myList = new Array();
+                    myJson.forEach(product => {
+                        myList +='<div class="slide">' + '<input onclick="getProduct(' + product.id + ')" type="image" border="5" src="' +product.image_path + '" width=200 height=200/></div>';
+                });
+
+                    document.getElementById("results").innerHTML = myList;
+                });
+        }
+    </script>
+</head>
+<body>
+<br class="container" style="width:30%">
+    <p style="padding-bottom: 20px">
+        Name:
+        <input id="name" type="text" class="searchTerm" placeholder="insert the name of the item">
+    </p>
+    <p style="padding-bottom: 20px">
+        Category:
+        <input id="category" type="text" class="searchTerm" placeholder="insert the category of the item">
+    </p>
+    <p style="padding-bottom: 20px">
+        Age:
+        <input id="age" type="text" class="searchTerm" placeholder="insert the relevant age for the item">
+    </p>
+    <p style="padding-bottom: 20px">
+        Gender:
+        <input id="gender" type="text" class="searchTerm" placeholder="insert the relevant gender for the item">
+    </p>
+    </br>
+    <p>
+        <button style= "background: #00B4CC;width: 40px;height: 40px;border: 1px solid #00B4CC"
+                onclick="addProduct()" >
+            <i class="fa fa-search"></i>
+            +
+        </button>
+    </p>
+</div>
+
+
+
+</body>
+</html>
