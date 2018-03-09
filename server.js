@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const logic = require('./logic');
+var productsCount = 2;
 app.use(express.static("public"));
 
 app.use(bodyParser.json());
@@ -23,5 +24,14 @@ app.post('/select/:productId', (req, res) => {
     })
 });
 
+app.post('/add', (req, res) => {
+    productsCount+=1;
+    console.log(req.body);
+    logic.addProduct(productsCount, req.body.name, 
+        req.body.category, req.body.age, 
+        req.body.gender, req.body.img_path, (req, success) => {
+        res.send(success);
+    })
+});
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
