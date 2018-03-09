@@ -7,6 +7,8 @@ module.exports = [{
     "image_path":"./img001.jpg",
     "category": "toys",
     "available": true,
+    "city": "Tel Aviv",
+    "Price": 20,
     },
     {   
         "id": 2,
@@ -17,4 +19,6 @@ module.exports = [{
         "image_path":"./img001.jpg",
         "category": "cloths",
         "available": true,
+        "city": "Haifa",
+        "Price": 10,
     }];

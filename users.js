@@ -4,6 +4,7 @@ module.exports = [{
     "uesr_email": "bob@gmail.com",
     "points": 500,
     "products_to_give": [1,2],
+    "City": "Jerusalem",
     },
     {
     "id": 1,
@@ -11,5 +12,6 @@ module.exports = [{
     "uesr_email": "alice@gmail.com",
     "points": 500,
     "products_to_give": [],
+    "City": "Modi'in",
 }
 ];
