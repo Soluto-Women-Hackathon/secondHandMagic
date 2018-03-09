@@ -17,6 +17,18 @@ app.get('/search/:category', (req, res)  => {
     })
 });
 
+app.get('/search/:gender', (req, res)  => {
+    logic.getProductByGender(req.params.gender, (err, products) => {
+    res.json(products);
+})
+});
+
+app.get('/search/:age', (req, res)  => {
+    logic.getProductByAge(req.params.age, (err, products) => {
+    res.json(products);
+})
+});
+
 app.post('/select/:productId', (req, res) => {
     console.log(req.body);
     logic.selectProduct(req.params.productId, req.body.userId, (req, success) => {

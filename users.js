@@ -5,6 +5,7 @@ module.exports = [{
     "points": 500,
     "products_to_give": [1,2],
     "City": "Jerusalem",
+    "activityPoints" : 30,
     },
     {
     "id": 1,
@@ -13,5 +14,6 @@ module.exports = [{
     "points": 500,
     "products_to_give": [],
     "City": "Modi'in",
+    "activityPoints" : 20,
 }
 ];

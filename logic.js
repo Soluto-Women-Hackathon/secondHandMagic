@@ -45,5 +45,21 @@ module.exports = {
         }
         products.push(newProduct);
         done(null, "Success");
-    }
+    },
+
+    approve: function (product_id, owner_id, reciever_id, done) {
+        console.log("approving give-away of product " + product_id + " from " + owner_id+ " to " + reciever_id);
+        var selectedProduct = products.find(function(p) {return (p.id === parseInt(product_id)&& p.available == true)});
+        var owner = users.find(function (p) {return (p.id === parseInt(owner_id))});
+        var reciever = users.find(function (p) {return (p.id === parseInt(reciever_id))});
+        if (selectedProduct == null) {
+            done(null, "failure");
+        } else {
+            reciever.points -= selectedProduct.Price;
+            reciever.activityPoints += 3;
+            owner.points += selectedProduct.Price;
+            owner.activityPoints += 5;
+            done(null, "success");
+        }
+    },
 };
