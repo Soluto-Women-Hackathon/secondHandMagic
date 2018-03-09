@@ -1,0 +1,20 @@
+module.exports = [{
+    "id": 1,
+    "name": "toy car",
+    "owner_user_id": 1,
+    "age": "12M",
+    "gender": null,
+    "image_path":"./img001.jpg",
+    "category": "toys",
+    "available": true,
+    },
+    {   
+        "id": 2,
+        "name": "red dress",
+        "owner_user_id": 1,
+        "age": "8M",
+        "gender": "girl",
+        "image_path":"./img001.jpg",
+        "category": "cloths",
+        "available": true,
+    }];
